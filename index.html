@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <title>User List ITI</title>
+  </head>
+  <body>
+    <main>
+      <section class="form-add-user">
+        <!-- Add User Form -->
+        <form class="add-user">
+          <h1>Add User</h1>
+
+          <div class="input-row">
+            <div class="item">
+              <label for="user-profile">Profile Image URL</label>
+              <input
+                type="url"
+                placeholder="Enter url profile"
+                name="user-profile"
+                id="user-profile"
+              />
+              <span id="profile-error" class="error-msg"></span>
+            </div>
+            <div class="item">
+              <label for="user-name">Full Name</label>
+              <input
+                type="text"
+                placeholder="Enter Name"
+                name="user-name"
+                id="user-name"
+              />
+              <span id="name-error" class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="item">
+              <label for="user-email">Email Address</label>
+              <input
+                type="email"
+                placeholder="Enter Email"
+                name="user-email"
+                id="user-email"
+              />
+              <span id="email-error" class="error-msg"></span>
+            </div>
+            <div class="item">
+              <label for="user-phone">Phone Number</label>
+              <input
+                type="tel"
+                placeholder="Enter Phone"
+                name="user-phone"
+                id="user-phone"
+              />
+              <span id="phone-error" class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="item">
+              <label for="user-birthday">Birthday</label>
+              <input
+                type="date"
+                placeholder="Enter Birthday"
+                name="user-birthday"
+                id="user-birthday"
+              />
+              <span id="birthday-error" class="error-msg"></span>
+            </div>
+            <div class="item">
+              <label for="user-roles">Select Role</label>
+              <select name="user-roles" id="user-roles"></select>
+              <span id="role-error" class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="item single-item">
+              <button type="submit" id="btnSubmit">Add User</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Add Role Form -->
+        <form class="add-role">
+          <h1>Add Role</h1>
+
+          <div class="input-row">
+            <div class="item">
+              <label for="role-name">Role Name</label>
+              <input
+                type="text"
+                placeholder="Enter Role Name"
+                name="role-name"
+                id="role-name"
+              />
+              <span id="roleName-error" class="error-msg"></span>
+            </div>
+            <div class="item">
+              <label for="role-date">Expiry Date</label>
+              <input type="date" name="role-date" id="role-date" />
+              <span id="expiryDate-error" class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="item single-item">
+              <button type="submit" id="btnAddRole">Add Role</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Search  -->
+      <div class="search-section">
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by email"
+            class="search-input"
+          />
+          <button id="search-btn" class="search-btn">Search</button>
+          <button id="search-reset" class="search-btn">Reset</button>
+        </div>
+      </div>
+      <!-- USer List Container -->
+      <section class="user-list"></section>
+    </main>
+
+    <script src="assets/js/index.js" type="module"></script>
+  </body>
+</html>
