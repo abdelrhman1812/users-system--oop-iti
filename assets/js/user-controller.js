@@ -109,7 +109,7 @@ const handleSearch = () => {
 
   const users = getUsersFromStorage();
   const filteredUsers = users.filter((user) =>
-    user.email.toLowerCase().includes(value.toLowerCase())
+    user.email.split("@")[0].toLowerCase().includes(value.toLowerCase())
   );
 
   console.log(filteredUsers);
