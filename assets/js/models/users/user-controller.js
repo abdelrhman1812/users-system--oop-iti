@@ -1,8 +1,12 @@
 /* handler add user */
 
-import { validationInputs } from "./ validation.js";
-import { getUsersFromStorage, setUsersToStorage } from "./storage.js";
-import { displayUsers } from "./ui.js";
+import {
+  getUsersFromStorage,
+  setUsersToStorage,
+} from "../../storage/storage.js";
+import { displayUsers } from "../../ui/ui.js";
+import { validationInputs } from "../../utils/ validation.js";
+import { showToast } from "../../utils/toast.js";
 import UserModel from "./users-model.js";
 
 /*  Catch elements */
@@ -29,6 +33,7 @@ const searchBtn = document.getElementById("search-btn");
 
 const resetBtn = document.getElementById("search-reset");
 
+/* Handle Add User */
 export const handleAddUser = (e) => {
   e.preventDefault();
 
@@ -79,6 +84,7 @@ export const handleAddUser = (e) => {
     setUsersToStorage(currentUsers);
 
     displayUsers(currentUsers);
+    showToast("success", "Success Add User");
 
     /* reset form */
     handleReset();
@@ -86,11 +92,11 @@ export const handleAddUser = (e) => {
 };
 
 /* Reset Values */
-function handleReset() {
+const handleReset = () => {
   elements.forEach((element) => {
     element.value = "";
   });
-}
+};
 // /* handler msg error  */
 elements.forEach((element) => {
   element.addEventListener("input", (e) => {
@@ -101,6 +107,15 @@ elements.forEach((element) => {
 /* handle search */
 
 const handleSearch = () => {
+  /* 
+
+ - get value 
+ - check value not empty
+ - get data and filter 
+ - if data show btn reset
+
+*/
+
   let value = searchInput.value.trim();
 
   if (value.length === 0) {
@@ -125,18 +140,50 @@ const handleSearch = () => {
   }
 };
 
+/* Check if input search value not empty make the btn search true and rm opacity */
 searchInput.addEventListener("input", () => {
+  searchBtn.style.opacity = "1";
   searchBtn.disabled = searchInput.value.trim().length === 0;
 });
 
 searchBtn.addEventListener("click", handleSearch);
+
+/* The Default if input search empty */
 searchBtn.disabled = true;
+searchBtn.style.opacity = "0.5";
 
 /* reset users after search */
-
 resetBtn.addEventListener("click", () => {
   searchInput.value = "";
   searchBtn.disabled = true;
+  searchBtn.style.opacity = "0.5";
   resetBtn.style.display = "none";
   displayUsers(getUsersFromStorage());
 });
+
+/* Handle Delete User */
+export const handleDeleteUser = function (index) {
+  /*
+
+  - get index || the element that i need delete
+  - get data and take copy and rm element
+  - sava data and return display data of user
+
+*/
+
+  const users = getUsersFromStorage();
+
+  // take copy form and rm
+  const updatedUsers = [...users];
+
+  updatedUsers.splice(index, 1);
+
+  // set after rm
+  setUsersToStorage(updatedUsers);
+  showToast("success", "Success Delete User");
+
+  // show after update
+  displayUsers(updatedUsers);
+
+  // console.log(" updatedUsers ", updatedUsers);
+};

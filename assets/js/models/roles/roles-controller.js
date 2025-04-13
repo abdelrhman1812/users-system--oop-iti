@@ -1,9 +1,10 @@
 /* handler add role */
 
-import { validationInputs } from "./ validation.js";
-import { displayUsersRoles } from "./ui.js";
+import usersRolesList from "../../data/users-roles-list.js";
+import { displayUsersRoles } from "../../ui/ui.js";
+import { validationInputs } from "../../utils/ validation.js";
+import { showToast } from "../../utils/toast.js";
 import UserRolesModel from "./userRoles-model.js";
-import usersRolesList from "./users-roles.js";
 
 /* catch elements */
 export let btnAddRole = document.getElementById("btnAddRole");
@@ -14,6 +15,15 @@ export let inputRoleDate = document.getElementById("role-date");
 
 /*  handle  add role */
 export const handleAddRole = (e) => {
+  /*
+
+   - check validation for input
+   - if true ! implement add role 
+   - display role
+  
+  
+  */
+
   e.preventDefault();
   let isValid = true;
 
@@ -39,5 +49,6 @@ export const handleAddRole = (e) => {
     /* update users roles */
     usersRolesList.push(roleAdded);
     displayUsersRoles(usersRolesList);
+    showToast("success", "Success Add Role");
   }
 };

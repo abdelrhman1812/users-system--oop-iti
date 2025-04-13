@@ -1,4 +1,3 @@
-import usersRolesList from "./users-roles.js";
 /* 
 
 - Create User Model 
@@ -7,6 +6,8 @@ import usersRolesList from "./users-roles.js";
 
 
 */
+
+import usersRolesList from "../../data/users-roles-list.js";
 
 class UserModel {
   constructor(profileImage, userName, email, phone, birthday, roleChip) {

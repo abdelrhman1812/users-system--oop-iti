@@ -1,12 +1,19 @@
-import { getUsersFromStorage, setUsersToStorage } from "./storage.js";
+import { handleDeleteUser } from "../models/users/user-controller.js";
 
 /* Catch container ui to display users and user roles */
-
 let usersListContainer = document.querySelector(".user-list");
 let userRoleContainer = document.getElementById("user-roles");
 
 /* Display User Html  */
 export const displayUsers = (usersList) => {
+  /* 
+
+  - display user list 
+  - check role to handle show color for role user
+  - after display user catch btn delete for all user to handle delete user
+
+*/
+
   usersListContainer.innerHTML = "";
 
   let color;
@@ -29,11 +36,20 @@ export const displayUsers = (usersList) => {
           <h3>${usersList[i].email}</h3>
           <h3>${usersList[i].phone}</h3>
           <h3>${usersList[i].birthday}</h3>
-          <button onClick="handleDeleteUser(${i})">Delete</button>
+          <button class="btn-delete"  data-id='${i}'">Delete</button>
         </div>
     
     `;
   }
+  let btnsDelete = document.querySelectorAll(".btn-delete");
+
+  btnsDelete.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      let target = e.target.getAttribute("data-id");
+      console.log(target);
+      handleDeleteUser(target);
+    });
+  });
 };
 
 /* Display users roles  */
@@ -49,22 +65,4 @@ export const displayUsersRoles = (usersRolesList) => {
     }</option>
     `;
   }
-};
-
-/* Handle Delete User */
-window.handleDeleteUser = function (index) {
-  const users = getUsersFromStorage();
-
-  // take copy form and rm
-  const updatedUsers = [...users];
-
-  updatedUsers.splice(index, 1);
-
-  // set after rm
-  setUsersToStorage(updatedUsers);
-
-  // show after update
-  displayUsers(updatedUsers);
-
-  // console.log(" updatedUsers ", updatedUsers);
 };

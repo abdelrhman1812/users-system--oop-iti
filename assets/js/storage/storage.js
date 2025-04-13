@@ -1,4 +1,4 @@
-import usersList from "./users-list.js";
+import usersList from "../data/users-list.js";
 
 /* Get Users From Local Storage */
 

@@ -1,4 +1,4 @@
-import UserModel from "./users-model.js";
+import UserModel from "../models/users/users-model.js";
 
 let usersList = [
   new UserModel(
@@ -15,7 +15,7 @@ let usersList = [
     "Ahmed",
     "ahmed@gmail.com",
     "01008034761",
-    "18-12-1997",
+    "05-3-1997",
     2
   ),
 
